@@ -13,7 +13,7 @@ The reason for creating another version of the image, was:
 
 ## The Image
 
-<https://hub.docker.com/r/tmuncks/pdns-auth/>
+<https://hub.docker.com/r/tmuncks/pdns-server/>
 
 Docker image with PowerDNS Authoritative Server.
 
