@@ -82,9 +82,12 @@ PDNS_local_address=${PDNS_local_address:="0.0.0.0"}
 PDNS_local_port=${PDNS_local_port:="53"}
 
 # Create config file based on PDNS_ environment variables
-while read -r setting; do
-    param="${setting/PDNS_/}"
-    echo "${param//_/-}=${!setting}"
-done < <(compgen -v "PDNS_") > /etc/powerdns/pdns.conf
+# - Skip if the file has been mounted from the outside
+if ! mountpoint -q "/etc/powerdns/pdns.conf"; then
+    while read -r setting; do
+        param="${setting/PDNS_/}"
+        echo "${param//_/-}=${!setting}"
+    done < <(compgen -v "PDNS_") > /etc/powerdns/pdns.conf
+fi
 
 exec "$@"
