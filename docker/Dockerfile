@@ -22,4 +22,4 @@ COPY docker-entrypoint.sh /
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 # default command
-CMD ["/usr/sbin/pdns_server", "--setuid=pdns", "--setgid=pdns", "--daemon=no", "--local-address=0.0.0.0", "--local-port=53", "--launch=gmysql"]
+CMD ["/usr/sbin/pdns_server", "--setuid=pdns", "--setgid=pdns", "--daemon=no", "--launch=gmysql"]

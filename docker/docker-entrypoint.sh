@@ -77,6 +77,10 @@ if [ "${PDNS_superslave:-no}" == "yes" ]; then
     fi
 fi
 
+# Setup recommended defaults
+PDNS_local_address=${PDNS_local_address:="0.0.0.0"}
+PDNS_local_port=${PDNS_local_port:="53"}
+
 # Create config file based on PDNS_ environment variables
 while read -r setting; do
     param="${setting/PDNS_/}"
