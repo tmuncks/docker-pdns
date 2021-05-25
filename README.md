@@ -13,11 +13,20 @@ The reason for creating another version of the image, was:
 
 ## The Image
 
-<https://hub.docker.com/r/tmuncks/pdns-server/>
-
 Docker image with PowerDNS Authoritative Server.
 
-The image is MySQL enabled, so needs an external MySQL server to function. ENV variables can be used for MySQL configuration:
+### Repositories
+
+* Docker: <https://hub.docker.com/r/tmuncks/pdns-server/>
+* Github: <https://github.com/tmuncks/docker-pdns-server/>
+
+### Usage
+
+The image is MySQL enabled, so needs an external MySQL server to function.
+
+#### Environment variables
+
+ENV variables can be used for configuration:
 
 ```text
 (name=value)
@@ -41,6 +50,12 @@ The PowerDNS server is configurable via env vars. Every variable starting with `
 Example from above mysql config; `PDNS_gmysql_host=mysql` will become `gmysql-host=mysql` in `/etc/powerdns/pdns.conf` file. This way, you can configure PowerDNS server any way you need, within a `docker run` command.
 
 There is also a `SUPERMASTER_IPS` env var supported, which can be used to configure supermasters for slave dns server. [Docs](https://doc.powerdns.com/md/authoritative/modes-of-operation/#supermaster-automatic-provisioning-of-slaves). Multiple ip addresses separated by space should work.
+
+#### Mounting configuration file
+
+Another option is to mount a full PowerDNS Authoritative Server configuration on `/etc/powerdns/pdns.conf` in the container. In this case, all `PDNS_` environment variables will be ignored.
+
+### Reference
 
 You can find [here](https://doc.powerdns.com/authoritative/settings.html) all available settings.
 
