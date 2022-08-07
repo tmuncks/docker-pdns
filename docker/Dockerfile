@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 # register arguments (from make)
 ARG REPO
@@ -11,6 +11,7 @@ RUN echo "deb [arch=amd64] http://repo.powerdns.com/ubuntu ${REPO} main" >> /etc
 
 # install pdns-server and tools
 RUN apt-get update \
+  && apt-get dist-upgrade -y \
   && apt-get install -y --no-install-recommends pdns-server pdns-backend-mysql mysql-client \
   && rm -rf /var/lib/apt/lists/*
 
